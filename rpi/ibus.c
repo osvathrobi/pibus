@@ -520,57 +520,31 @@ static const struct
 }
 events[] =
 {
-	//{5, "\x50\x03\xC8\x01\x9A", "r/t", NULL, KEY_TAB},
-	{6, "\xF0\x04\xFF\x48\x07\x44", "clock", NULL, KEY_ESC},
-	{6, "\xF0\x04\x3B\x48\x05\x82", "enter", NULL, KEY_ENTER},
-	{6, "\xF0\x04\x68\x48\x14\xC0", "<>", NULL, KEY_TAB},
-	{4, "\xF0\x04\x3B\x49", "rotary", NULL, 0, ibus_handle_rotary},
-	{6, "\xF0\x04\x68\x48\x04\xD0", "tone", NULL, 0, ibus_handle_tonekey},
+	
+{6, "\xF0\x05\xFF\x47\x00\x38\x75", "info", NULL, KEY_I},	
+{6, "\xF0\x04\x3B\x48\x05\x82", "enter", NULL, KEY_ENTER},
+{7, "\xF0\x05\xFF\x47\x00\x0F\x42", "sel", NULL, KEY_TAB},
+{4, "\xF0\x04\x3B\x49", "rotary", NULL, 0, ibus_handle_rotary},
+{6, "\xF0\x04\x68\x48\x40\x94", "FF", NULL, KEY_RIGHT|_CTRL_BIT},
+{6, "\xF0\x04\x68\x48\x50\x84", "RR", NULL, KEY_LEFT|_CTRL_BIT},
+{6, "\xF0\x04\x68\x48\x11\xC5", "1", NULL, KEY_ESC},
+{6, "\xF0\x04\x68\x48\x01\xD5", "2", NULL, KEY_SPACE},
+{6, "\xF0\x04\x68\x48\x12\xC6", "3", NULL, KEY_Z},
+{6, "\xF0\x04\x68\x48\x02\xD6", "4", NULL, KEY_X},
+{6, "\xF0\x04\x68\x48\x13\xC7", "5", NULL, KEY_LEFT},
+{6, "\xF0\x04\x68\x48\x03\xD7", "6", NULL, KEY_RIGHT}, 
 
-	{6, "\xF0\x04\x68\x48\x40\x94", "FF", NULL, KEY_RIGHT|_CTRL_BIT},
-	{6, "\xF0\x04\x68\x48\x50\x84", "RR", NULL, KEY_LEFT|_CTRL_BIT},
+{6, "\xF0\x04\x68\x48\x10\xC4", "cd-prev", NULL, KEY_COMMA, cdchanger_handle_start},
+{6, "\xF0\x04\x68\x48\x00\xD4", "cd-next", NULL, KEY_DOT, cdchanger_handle_start},
+// steering wheel
+{6, "\x50\x04\x68\x3B\x08\x0F", "cd-prev", NULL, KEY_COMMA, cdchanger_handle_start},
+{6, "\x50\x04\x68\x3B\x01\x06", "cd-next", NULL, KEY_DOT, cdchanger_handle_start}, 
 
-	{6, "\xF0\x04\x68\x48\x11\xC5", "1", NULL, KEY_SPACE},
-	{6, "\xF0\x04\x68\x48\x02\xD6", "4", NULL, KEY_I},
-
-	{6, "\xF0\x04\x68\x48\x01\xD5", "2", NULL, KEY_Z},
-	{6, "\xF0\x04\x68\x48\x13\xC7", "5", NULL, KEY_X},
-
-	{6, "\xF0\x04\x68\x48\x12\xC6", "3", NULL, KEY_LEFT},
-	{6, "\xF0\x04\x68\x48\x03\xD7", "6", NULL, KEY_RIGHT},
-
-	{6, "\xF0\x04\x68\x48\x23\xF7", "mode", NULL, 0, ibus_handle_outsidekey},
-	{6, "\xF0\x04\xFF\x48\x34\x77", "menu", NULL, 0, ibus_handle_outsidekey},
-	{6, "\xF0\x04\x68\x48\x31\xE5", "FM", NULL, 0, ibus_handle_outsidekey},
-	{6, "\xF0\x04\x68\x48\x21\xF5", "AM", NULL, 0, ibus_handle_outsidekey},
-	{6, "\x68\x04\x3b\x46\x02\x13", "screen-mainmenu", NULL, 0, ibus_handle_outsidekey},
-	{6, "\x68\x04\x3b\x46\x01\x10", "screen-none", NULL, 0},
-	{6, "\x68\x04\x3b\x46\x04\x15", "screen-toneoff", NULL, 0},
-	{6, "\x68\x04\x3b\x46\x08\x19", "screen-selectoff", NULL, 0},
-	{6, "\x68\x04\x3b\x46\x0C\x1d", "screen-toneselectoff", NULL, 0},
-	{4, "\x68\x04\x3b\x46", "screen-unknown", NULL, 0, ibus_handle_screen},
-
-	{6, "\x50\x04\xc8\x3b\x80\x27", "speak", NULL, 0, ibus_handle_speak},
-	{7, "\x44\x05\xBF\x74\x00\xFF\x75", "immobilized", NULL, 0, ibus_handle_immobilized},
-
-	{5, "\x80\x0C\xFF\x24\x01", "time", NULL, 0, ibus_handle_time},
-	{5, "\x80\x0F\xFF\x24\x02", "date", NULL, 0, ibus_handle_date},
-
-	{5, "\x80\x0C\xE7\x24\x01", "time", NULL, 0, ibus_handle_time},
-	{5, "\x80\x0F\xE7\x24\x02", "date", NULL, 0, ibus_handle_date},
-
-	{5, "\x68\x03\x18\x01\x72", "cd-poll", NULL, 0, cdchanger_handle_poll},
-	{7, "\x68\x05\x18\x38\x00\x00\x4d", "cd-info",  NULL, 0, cdchanger_handle_inforeq},
-	{7, "\x68\x05\x18\x38\x01\x00\x4c", "cd-stop",  NULL, 0, cdchanger_handle_stop},
-	{7, "\x68\x05\x18\x38\x02\x00\x4f", "cd-pause", NULL, 0, cdchanger_handle_pause},
-	{7, "\x68\x05\x18\x38\x03\x00\x4e", "cd-start", NULL, 0, cdchanger_handle_start},
-	{5, "\x68\x05\x18\x38\x06",         "cd-change",NULL, 0, cdchanger_handle_diskchange},
-	{7, "\x68\x05\x18\x38\x0a\x01\x46", "cd-prev",  NULL, KEY_COMMA, cdchanger_handle_start},
-	{7, "\x68\x05\x18\x38\x0a\x00\x47", "cd-next",  NULL, KEY_DOT, cdchanger_handle_start},
-
-	/* These are handled by the ATtiny on V2 and V3 boards */
-	{6, "\xF0\x04\xFF\x48\x08\x4B", "phone", NULL, 0, ibus_handle_phone},
-	{4, "\x80\x0A\xBF\x13", "IKE sensor", NULL, 0, ibus_handle_ike_sensor},
+{4, "\x80\x06\xBF\x19", "coolant-temp", NULL, 0, ibus_handle_coolant_temp},
+{4, "\x80\x09\xFF\x24", "fuel-consumption", NULL, 0, ibus_handle_fc},
+{4, "\x80\x0A\xFF\x24", "outside-temp", NULL, 0, ibus_handle_outside_temp},
+{4, "\x7F\x20\x3F\xA0", "battery-voltage", NULL, 0, ibus_handle_battery_voltage},
+{5, "\x7F\x03\x3F\xA1\xE2", "re-battery-voltage", NULL, 0, ibus_request_battery_voltage2},
 
 #if 0
 	/* The most common CDC message */
